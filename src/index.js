@@ -3,12 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
+import tagRun from "tagging-scripts";
+import config from "./tag";
+tagRun(config);
+
+// this is mock gtm dataLayer push function
+// each log will be printed in the console means the tag event is fired
+window.dataLayer = {
+  push: function (data) {
+    console.log("fire with data: ", data);
+  }
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
